@@ -1,6 +1,6 @@
 # Contact Form
 
-Exercice technique / fonctionnel utilisé par ACSEO pour ses recrutements
+Exercice technique / fonctionnel utilisé par ACSEO pour ses recrutements.
 
 
 ## Contexte
@@ -14,4 +14,4 @@ Vous êtes développeur chez ACSEO. Vous recevez une demande de la part d'un cli
 
 > Il nous faudrait aussi un petit back-office pour permettre au webmaster de consulter la liste des demandes, et de pouvoir cocher les messages que nous avons traité
 
-Le projet initial étant basé sur Symfony, il vous est demandé de mettre en place la solution sur la base de ce Framework.
+Le projet initial étant basé sur Symfony 3, il vous est demandé de mettre en place la solution sur la base de ce Framework.
