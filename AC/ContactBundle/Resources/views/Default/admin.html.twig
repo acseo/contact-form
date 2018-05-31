@@ -1,0 +1,32 @@
+{% extends "ACContactBundle:Default:layout.html.twig" %}
+{% block title %}
+    Admin
+{% endblock %}
+{% block header %}
+    <a href="{{ path('ac_contact_accueil') }}">Accueil</a>
+    <br>
+    <a href="{{ path('logout') }}">Logout</a>
+    <h1>Questions traitées / non traitées</h1>
+{% endblock %}
+{% block body %}
+    {% if form.demande|length > 0 %}
+        <div>Cochez les questions traitées</div>
+        {{ form_start(form) }}
+        <ul>
+            {% for demande in form.demande %}
+                <li>
+                    {% set idInternaute = demande.vars.value.internaute.id %}
+                    {{  listInternautes[idInternaute].email }}
+                    <ul>
+                        <li>
+                            {{ demande.vars.value.demande }}
+                            {{ form_widget(demande.traite) }}
+                        </li>
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+        <button type="submit">Valider</button>
+        {{ form_end(form) }}
+    {% endif %}
+{% endblock %}

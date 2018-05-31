@@ -1,0 +1,21 @@
+ac_contact_accueil:
+    path:     /accueil
+    defaults: { _controller: ACContactBundle:Default:accueil }
+
+ac_contact_form:
+    path:     /form
+    defaults: { _controller: ACContactBundle:Default:form }
+
+ac_contact_admin:
+    path:     /admin
+    defaults: { _controller: ACContactBundle:Default:admin }
+
+ac_contact_login:
+    path:   /login
+    defaults:  { _controller: ACContactBundle:Default:login }
+
+login_check:
+    path:   /login_check
+
+logout:
+    path:   /logout
