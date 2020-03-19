@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact us!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Messages</h1>
+        <form action="/admin/processMessages" method="post">
+            <ul class="list list-unstyled">
+                {% for message in messages %}
+                    <li><h3>Message {{ message.id }}</h3>
+                        <br><strong>Auteur :</strong> {{ message.firstName }} {{ message.lastName }} ({{ message.eMail }})
+                        <br><strong>Message : </strong>
+                        <br>{{ message.content }}
+                        <br>{% if message.processed %}
+                        <div class="alert alert-success">Lu</div>
+                        {% else %}
+                            <div class="alert alert-danger">Non lu</div>
+                            <label for="chk-{{ message.id }}">Comptabilser comme lu</label>
+                            <input name="processedMessages[]" id="chk-{{ message.id }}" type="checkbox" value="{{ message.id }}">
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+            {% if messages|length == 0 %}
+                <div class="alert alert-danger">
+                    Aucun message
+                </div>
+            {% endif %}
+            <button type="submit" class="btn btn-primary">Valider</button>
+{#            <input type="submit" class="btn btn-submit" value="ok">#}
+        </form>
+    </div>
+{% endblock %}

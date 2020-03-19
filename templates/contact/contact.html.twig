@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{#{% form_theme form 'bootstrap_4_layout.html.twig' %}#}
+{#{{ form_start(form, {'action': path('contact'), 'method': 'GET'}) }}#}
+
+
+{% block title %}Contact us!{% endblock %}
+
+{% block body %}
+    <h1>Nous contacter</h1>
+    <div class="alert alert-info">
+        <p>Bonjour, veuillez remplir ce formulaire pour nous contacter :</p>
+    </div>
+    {{ form(form) }}
+
+
+{% endblock %}
+

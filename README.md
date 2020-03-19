@@ -15,3 +15,8 @@ Vous êtes développeur chez ACSEO. Vous recevez une demande de la part d'un cli
 > Il nous faudrait aussi un petit back-office avec accès sécurisé pour permettre au webmaster de consulter la liste des demandes, et de pouvoir cocher les messages que nous avons traité
 
 Il vous est demandé de mettre en place la solution sur la base du Framework Symfony 3 ou 4.
+
+
+## Routes
+- Pour ajouter un nouveau message : /contact
+- Lecture des messages : /admin/messages
