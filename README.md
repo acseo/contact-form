@@ -21,3 +21,34 @@ Les règles de gestion suivantes sont à mettre en place :
 > Toute demande de contact doit déclencher la création d'un fichier JSON unique dans un répertoire spécifique non exposé par le serveur web, qui contient l'ensemble du contenu de la demande : informations du contact et contenu de la demande. A terme d'autres notifications seront déclenchées.
 
 Il vous est demandé de mettre en place la solution sur la base du Framework Symfony.
+
+#Guillaume Martin
+## Travaux effectués
+
++Symfony 5.3
++MySql 8.0
++php 7.4
+
+
+
+la route pour le formulaire est 
+/personne/new
+
+création d'un fichier Json lorsqu'une question est posée dans le dossier /var/contact
+
+la route pour que l'utilisateur puisse voir toutes ses demandes : 
+/personne/questions
+
+executer dans MySql la requete sql :
+>insert into contact.admin (id, email, roles, password) values (1, 'admin@contact.fr', '["ROLE_ADMIN"]', '$2y$13$eHK0nFkeF7EUyVbqQPfBbO5iG0QOms9Ah14OFOTFWBZ7FN6kIwCW.');
+
+les credentials de admin sont :
+>login : admin@contact.fr
+>mdp : toor
+
+la route pour se connecter à l'interface admin est /login
+
+Je ne suis pas arrivé à mettre en forme le tableau en twig regroupant les questions des utilisateurs avec la validation.
+
+
+
