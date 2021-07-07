@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {{ form(form) }}
+
+    {% if errorMsg is defined %}
+        <label class="red">{{ errorMsg }}</label>
+    {% endif %}
+
+    {% if questions is defined %}
+        {% for question in questions %}
+            <li>{{ question.commentaire }}</li>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

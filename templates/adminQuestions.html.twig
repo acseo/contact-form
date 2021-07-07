@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(form) }}
+    {{ dump(form.questions) }}
+    <ul>
+        {% for question in form.questions %}
+            <li>{{ form_row(question.commentaire) }}</li>
+            <li>{{ form_row(question.validee) }}</li>
+        {% endfor %}
+    </ul>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
