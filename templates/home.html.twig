@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="jumbotron mt-5">
+            <h1 class="display-4 text-center">Test :</h1>
+            <p class="lead text-center">Vous pouvez poser votre question, nous ne manquerons pas de vous repondre dans les plus bref délais.</p>
+            <hr class="my-4 bg-danger w-50">
+            <p class="lead text-center">
+            <a class="btn btn-primary btn-lg" href="{{ path('contact') }}" role="button">Contactez-nous</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}

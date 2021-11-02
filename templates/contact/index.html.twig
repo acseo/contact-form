@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ContactController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center mt-3">Posez vos questions :</h1>
+    <hr class="w-50 bg-danger mx-auto">
+    <div class="w-50 mx-auto mt-5">
+        {{ form_start(contactForm) }}
+            {{ form_widget(contactForm) }}
+            <button type="submit" class="btn btn-primary">Confirmer</button>
+        {{ form_start(contactForm) }}
+    </div>
+</div>
+{% endblock %}
