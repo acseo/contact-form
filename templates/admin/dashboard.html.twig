@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Dashboard{% endblock %}
+{% block title %}dashboard | contact{% endblock %}
 
 {% block body %}
 <div class="container">
@@ -29,14 +29,14 @@
                         </td>    
                         <td id="valider"> 
                             {% if d.valider == 0 %}                         
-                                <p class="text-danger">Répondre</p>   
+                                <p class="text-danger"><i class="fas fa-check fa-2x"></i></p>   
                             {% else %} 
-                                <p class="text-success">Déja répondu</p>
+                                <p class="text-success"><i class="fas fa-check fa-2x"></i></p>
                             {% endif %}                            
                         </td>
                         <td>
                             {% if d.valider == 0 %} 
-                            <a href="{{ path('valide', {'nom' : data.nom, 'message' : d.message })}}" class="btn btn-success">Répondu</a></p>
+                                <a href="{{ path('valide', {'nom' : data.nom, 'message' : d.message })}}" class="btn btn-success">Répondu</a></p>
                             {% else %} 
                                 <a href="{{ path('valide', {'nom' : data.nom, 'message' : d.message })}}" class="btn btn-success" hidden>Répondu</a></p>
                             {% endif %}

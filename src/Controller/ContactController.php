@@ -12,34 +12,33 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ContactController extends AbstractController
 {
     /**
-     * Permet la création d'un message
      * @Route("/contact", name="contact")
      */
     public function index(Request $request): Response
     {
         $contact = new Contact();
-        $contactForm =  $this->createForm(ContactType::class, $contact);
-        $contactForm->handleRequest($request);
-
-        if($contactForm->isSubmitted() && $contactForm->isValid())
-        {
+        
+        $form = $this->createForm(ContactType::class, $contact);
+        $form->handleRequest($request);
+        
+        if($form->isSubmitted() && $form->isValid()){
             $arrayContact = [];
             $message = [];
             $validate = "0";
-            $fileContact = $contactForm->get('nom')->getData().'.json';
+            $fileContact = $form->get('nom')->getData().'.json';
             $filePath = $this->getParameter('contact_directory').$fileContact;
 
             if(!file_exists($filePath)){
                
                 $message= [   
-                    'message' => $contactForm->get('message')->getData(),
+                    'message' => $form->get('message')->getData(),
                     'valider' => $validate
                 ];
                 
                 $arrayContact[] = [
-                    "nom" => $contactForm->get('nom')->getData(),
-                    "prenom" => $contactForm->get('prenom')->getData(),
-                    "email" => $contactForm->get('email')->getData(),
+                    "nom" => $form->get('nom')->getData(),
+                    "prenom" => $form->get('prenom')->getData(),
+                    "email" => $form->get('email')->getData(),
                     "message" => [$message]
                     
                 ];
@@ -66,7 +65,7 @@ class ContactController extends AbstractController
                 foreach($fichier as $data){
                     
                     $message= [   
-                        'message' => $contactForm->get('message')->getData(),
+                        'message' => $form->get('message')->getData(),
                         'valider' => $validate
                     ];
                     
@@ -94,11 +93,11 @@ class ContactController extends AbstractController
                 return $this->redirectToRoute('home');
                 
             }
-                  
+
         }
         
         return $this->render('contact/index.html.twig', [
-            'contactForm' => $contactForm->createView(),
+            'form' => $form->createView()
         ]);
     }
 }

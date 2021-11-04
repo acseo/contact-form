@@ -3,8 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ContactRepository;
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ContactRepository::class)
@@ -19,34 +19,28 @@ class Contact
     private $id;
 
     /**
-     * @Assert\NotBlank(message="Renseigner ce champ !")
-     * @ORM\Column(type="string", length=30)
+     * @Assert\NotBlank(message="Le champ ne peut pas être vide...")
+     * @ORM\Column(type="string", length=100)
      */
     private $nom;
 
     /**
-     * @Assert\NotBlank(message="Renseigner ce champ !")
-     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Le champ ne peut pas être vide...")
+     * @ORM\Column(type="string", length=100)
      */
     private $prenom;
 
     /**
-     * @Assert\NotBlank(message="Renseigner ce champ !")
+     * @Assert\NotBlank(message="Le champ ne peut pas être vide...")
      * @ORM\Column(type="string", length=255)
      */
     private $email;
 
     /**
-     * @Assert\NotBlank(message="Renseigner ce champ !")
+     * @Assert\NotBlank(message="Le champ ne peut pas être vide...")
      * @ORM\Column(type="text")
      */
     private $message;
-
-    /**
-     * 
-     * @ORM\Column(type="boolean")
-     */
-    private $validate;
 
     public function getId(): ?int
     {
@@ -97,18 +91,6 @@ class Contact
     public function setMessage(string $message): self
     {
         $this->message = $message;
-
-        return $this;
-    }
-
-    public function getValidate(): ?bool
-    {
-        return $this->validate;
-    }
-
-    public function setValidate(bool $validate): self
-    {
-        $this->validate = $validate;
 
         return $this;
     }

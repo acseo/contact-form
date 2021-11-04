@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}dashboard | contact{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center mt-3">Utilisateurs</h1>
+    <table class="table table-striped mt-5">
+        <tr>
+            <th>#</th>
+            <th>Adresse email</th>
+            <th>Username</th>
+            <th>Roles</th>
+            <th>Actions</th>
+        </tr>
+    {% set i = 1 %}
+    {% for user in users %}
+        <tr>
+            <td>{{ i }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.username }}</td>
+            <td>
+                <span class="bg-primary">
+                    
+                </span>
+            </td>
+            <td>
+                <a href="">supprimer</a>
+            </td>
+        </tr>
+        {% set i = i+1 %}
+    {% endfor %}
+</table>
+</div>
+{% endblock %}
