@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>S'incrire :</h1>
+    <div class="w-50 mx-auto mt-3 p-2">
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <div class="w-25 mx-auto">
+                <input type="submit" name="" value="Valider" class="btn btn-lg btn-primary">
+            </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

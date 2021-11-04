@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}dashboard | contact{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center mt-3">Question reçu :</h1>
+    <hr class="bg-danger w-50 mx-auto">
+    <table class="table table-striped mt-5">
+        <thead>
+            <tr>
+                <th>Nom :</th>
+                <th>Email :</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in listData %}
+                   <tr>
+                        <td>{{ data.nom }}</td>
+                        <td>{{ data.email }}</td>
+
+                    </tr>     
+                        
+                        {% for d in data.message %}
+                        <tr> 
+                        <td>                       
+                            <p>{{d.message}}</p>
+                                                             
+                        </td>    
+                        <td id="valider"> 
+                            {% if d.valider == 0 %}                         
+                                <p class="text-danger"><i class="fas fa-check fa-2x"></i></p>   
+                            {% else %} 
+                                <p class="text-success"><i class="fas fa-check fa-2x"></i></p>
+                            {% endif %}                            
+                        </td>
+                        <td>
+                            {% if d.valider == 0 %} 
+                                <a href="{{ path('valide', {'nom' : data.nom, 'message' : d.message })}}" class="btn btn-success">Répondu</a></p>
+                            {% else %} 
+                                <a href="{{ path('valide', {'nom' : data.nom, 'message' : d.message })}}" class="btn btn-success" hidden>Répondu</a></p>
+                            {% endif %}
+                        </td>
+                        <tr>
+                        {% endfor %}
+                   </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
