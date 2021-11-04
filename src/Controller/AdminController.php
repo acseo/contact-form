@@ -62,7 +62,7 @@ class AdminController extends AbstractController
             foreach($fichier as $data){
                 
                 // récupération du bollean pour le message
-                foreach($data['message'] as $d){
+                foreach($data['message'] as $k=>$d){
                     if($d['message'] === $message){
                        $valider = $d['valider'] ;
                        $valider = "1";
@@ -71,7 +71,10 @@ class AdminController extends AbstractController
                        $messages = [
                         'message' => $d['message'],
                         'valider' => $d['valider']                  
-                       ];                     
+                       ];
+
+                       unset($data['message'][$k]);
+
                     } 
                 }
 
