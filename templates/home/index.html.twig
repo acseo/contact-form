@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Acseo Home page{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+        Bienvenue !
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="md-6">
+                Pour nous contacter, c'est <br>
+                <a href="{{ path('contact') }}" class="btn btn-primary"> par ici !</a>
+
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="md-6">
+            Pour la partie admin c'est par la :
+            <br>
+            <a class="btn btn-primary" href="{{ path('admin') }}"> Administration </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
