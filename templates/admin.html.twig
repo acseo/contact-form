@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Interface Administrateur!{% endblock %}
+{% block body %}
+<div class="col py-3">
+
+<h1 class="h3 mb-5 text-center font-weight-normal">Liste des messages</h1>
+<table class="table">
+    <thead>
+        <tr class="d-flex">
+            <th class="col-2">
+                Email
+            </th>
+            <th class="col-2">
+                Nom
+            </th>
+            <th class="col-8">
+                Demandes
+            </th>
+        </tr>
+    </thead>
+
+    {% for userContact in contacts %}                   
+        <tr class="d-flex">
+                <td class="col-sm-2">
+                {{ userContact.email }}
+            </td>
+                <td class="col-sm-2">
+                {{ userContact.name }}
+            </td>
+                <td class="col-sm-8">
+            <table class="table">
+                
+                {% set messages = userContact.messages %}
+                {% for userMessage in messages %}
+                    
+                    {% set classDanger = 'table-light' %}
+                    {% if  not userMessage.isProcessed %}
+                        {% set classDanger = 'table-danger' %}
+                    {% endif %}
+                    <tr  class="d-flex {{classDanger}} ">
+                        <td class="col-sm-10">
+                            {{ userMessage.content }}
+                        </td>
+                        <td class="btn-td text-end col-sm-2" id="msg-{{ userMessage.id }}">
+                            {% if  not userMessage.isProcessed %}
+                                <button  href="{{ path('processedMessage',{'id': userMessage.id }) }}"  class="proccessBtn btn-sm btn-danger">Marquer comme traité</button>
+                            {% else %}
+                                <span class="text-primary">Traitée</span>
+                            {%endif%}
+                            </td>
+                        </tr>
+                {% endfor %}
+            </table>
+            </td>
+        </tr>
+        
+    {% endfor %}
+    </table>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+     {{ parent() }}
+     {{ encore_entry_script_tags('admin') }}
+ {% endblock %}
