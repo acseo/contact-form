@@ -1,0 +1,89 @@
+{% extends 'form/layout.html.twig' %}
+
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+    <div class="contact" >
+        <h1> Formulaire de contact </h1>
+        <div class="contact-form" id="form" role="form">
+            {{ form_start(form, {'name': 'form-contact', 'onsubmit': 'return validationForm()' }) }}
+                <div class="col" >
+                    <div class="my-custom-class-for-errors">
+                        {{ form_errors(form) }}
+                    </div>
+                    <div class="row d-flex justify-content-between">
+                        <div class="col form-group">
+                            {{form_row(form.contact.name)}}
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-between">
+                        <div class="col form-group">
+                            {{form_row(form.contact.email)}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col form-group">
+                            {{form_row(form.message)}}
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    {{ form_row(form.envoyer) }}
+                </div>    
+                <div class="hidden" hidden>
+                    {{ form_rest(form) }}
+                </div>    
+            {{form_end(form)}}
+        </div>
+    </div>
+
+    <script>
+{#
+
+        let inputName = document.getElementById('contact_nom');
+        let inputEmail = document.getElementById('contact_nom');
+        let textAreaMessage = document.getElementById('contact_message'); 
+        console.log(inputName);
+
+
+        inputName.addEventListener('blur', inputName => isValid(inputName));
+        inputEmail.addEventListener('blur', inputEmail => isValid(inputEmail));
+        textAreaMessage.addEventListener('blur', textAreaMessage => isValid(textAreaMessage));
+
+
+        function isValid() {
+            console.log(this);
+            if(this.valid) {
+                this.classList.add('is-valid');
+                this.classList.remove('is-invalid');
+            }else{
+                this.classList.add('is-invalid');
+                this.classList.remove('is-valid');
+            }
+            console.log(this);
+        }
+
+        function validateForm() {
+            let x = document.forms["form-contact"]["contact[nom]"].value;
+            console.log(x);
+            if (x == "") {
+                alert("Name must be filled out");
+                return false;
+            }
+        } 
+
+
+
+
+#}
+        
+
+    </script>
+
+{% endblock %}
+
+
+{% block javascript %}
+
+{% endblock %}

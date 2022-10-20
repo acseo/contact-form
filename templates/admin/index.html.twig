@@ -1,0 +1,134 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('styles/admin.css') }}" type="text/css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    {#  https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js #}
+    
+{% endblock %}
+
+{% block body %}
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ path('app_admin') }}">Acseo Admin</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{path('app_admin')}}">Avec BDD</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{path('app_admin_from_json_file')}}">Sans BDD</a>
+                    </li>
+                </ul>
+
+                <ul class="d-flex ms-auto">
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="example-wrapper">
+        <h1>Administration : Liste des messages ✅</h1>
+        <div id="data" class="col">
+            {# On parcour le tableau de données #}
+            {% for contact in contacts %}
+                <div class="col">
+                    <div class="hstack gap-3 " >
+                        <div class="col-5 bg-light border">
+                            {{ contact.name }}
+                        </div>
+                        <div class="col-5 bg-light border">
+                            {{ contact.email }}
+                        </div>
+                    </div>  
+                    <div class="row">
+                        <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">id</th>
+                                        <th scope="col">Message</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Résolu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {# On va récupère tous les messages de la personne  #}
+                                    {% for message in contact.messages %}
+                                        <tr>
+                                            <th scope="row">{{ message.id }}</th>
+                                            <td>{{ message.message }}</td>
+                                            <td>{{ message.dateMessage | date('d-m-Y') }}</td>
+                                            <td>
+                                                <div class="form-check">                
+                                                    <input class="form-check-input" {% if message.resolved is same as (true) %}checked{% endif %} type="checkbox" value="{{ message.id }}" id="{{contact.id}}_{{message.id}}" >  {# .onchange="{{ path('app_update_data', {idMessage: message.id}) }}" #}
+                                                    <label class="form-check-label" for="{{contact.id}}_{{message.id}}"> </label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>  
+                    </div>  
+                </div>    
+            {% endfor %}
+        </div>
+    </div>
+    <div>
+        <button id="btn-export" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+            Exporter les fonnées
+        </button>
+        
+    </div>    
+    
+
+    <script type="text/javascript">
+        
+        $("input[type='checkbox']").change(function (event) {
+            console.log($(this));
+            //event.preventDefault();
+            //$(this).hide().parent().append('<i class="fa fa-refresh fa-spin"></i>');
+            if($(this).is(":checked")){ //use $(this) instead of $('#check') 
+                const url = "/admin/update_data/" + this.value;
+                $.get(url, function (msg) {
+                        console.log(msg);
+                    }
+                );
+                
+            }else{
+                const url = "/admin/update_data/" + this.value;
+                $.get( url, function (msg) {
+                        console.log(msg);
+                    }
+                );
+            }
+        });
+
+        $("#btn-export").click(function(){
+            console.log();
+            $.get( "/admin/export/", function(msg) {
+                    console.log(msg);
+                    alert(msg);
+                }
+            );
+        });
+        
+
+    </script>    
+    
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+
+{% endblock %}

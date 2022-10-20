@@ -1,0 +1,138 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('styles/admin.css') }}" type="text/css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    {#  https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js #}
+    
+{% endblock %}
+
+{% block body %}
+    <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ path('app_admin') }}">Acseo Admin</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{path('app_admin')}}">Avec BDD</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{{path('app_admin_from_json_file')}}">Sans BDD</a>
+                </li>
+            </ul>
+            <ul class="d-flex ms-auto">
+                <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </nav>
+
+    <div class="example-wrapper">
+        <h1>Administration : Liste des messages ✅</h1>
+        <div id="data" class="col">
+            {# On parcour le tableau de données #}
+            {% for val in data %}
+                <section>
+                    <div class="col">
+                        <div class="row ">
+                            <div id="name" class="col-5 bg-light border"> Nom :  {{val.name}} </div>
+                            <div id="email" class="col-5 bg-light border"> Email: {{val.email}} </div
+                        </div>
+                        <div class="row">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">id</th>
+                                        <th scope="col">Message</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Résolu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {# On va récupère tous les messages de la personne  #}
+                                    {% for message in val.messages %}
+                                        
+                                        <tr>
+                                            <th scope="row">{{ message.key }}</th>
+                                            <td>{{ message.message }}</td>
+                                            <td>{{ message.date }}</td>
+                                            <td>
+                                                <div class="form-check">
+                                                    {% if message.resolved is same as (true) %}
+                                                        <input class="form-check-input checked" type="checkbox" value="{{ message.resolved }}" id="{{val.id}}_{{message.key}}" >
+                                                    {% else %}
+                                                        <input class="form-check-input" type="checkbox" value="{{ message.resolved }}" id="{{val.id}}_{{message.key}}" >
+                                                    {% endif %}
+                                                    <label class="form-check-label" for="{{val.id}}_{{message.key}}"> </label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        
+                                    {% endfor %}
+                                </tbody>
+                            </table>     
+                        </div>        
+                    </div>
+                </section>    
+            {% endfor %}
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        
+        $("input[type='checkbox']").change(function () {
+            console.log($(this));
+            //$(this).hide().parent().append('<i class="fa fa-refresh fa-spin"></i>');
+            if($(this).is(":checked")){ //use $(this) instead of $('#check')
+                var val = 1;
+                console.log($(this).attr('id'));
+
+                /*
+                $.ajax({
+                    type:     'POST',
+                    url:      "/admin/update_data"/ + this.value,
+                    data:     "etat=" +val,
+                    success: function (msg) {
+                        console.log(msg);
+                    }
+                })
+                        .done(function () {
+                            
+                        });
+                */
+            }else{
+                var val = 0;
+                console.log($(this).attr('id'))
+                /*
+                $.ajax({
+                    type: 'POST',
+                    url:  "/admin/update_data/" + this.value,
+                    data: "etat=" +val,
+                    success: function (msg) {
+                        console.log(msg);
+                    }
+                })
+                        .done(function () {
+
+                        });
+                */
+            }
+        });
+
+    </script>    
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+
+{% endblock %}

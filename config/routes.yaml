@@ -1,0 +1,38 @@
+controllers:
+    resource: ../src/Controller/
+    type: attribute
+
+app_contact:
+    path: /contact
+    controller: App\Controller\FormController::index
+
+app_send:
+    path: /send
+    controller: App\Controller\FormController::send
+
+app_login:
+    path: /login
+    controller: App\Controller\LoginController::index
+
+app_logout:
+    path: /logout
+    controller: App\Controller\LoginController::logout
+
+app_admin:
+    path: /admin
+    controller: App\Controller\AdminController::admin
+
+
+app_update_data:
+    path: /admin/update_data/{idMessage}
+    controller: App\Controller\AdminController::updateData
+    requirements:
+        idMessage: '\d+'
+        
+app_admin_export: 
+    path: /admin/export
+    controller: App\Controller\AdminController::export    
+
+app_admin_from_json_file:
+    path: /admin/from_json_file
+    controller: App\Controller\AdminFromJsonFileController::adminFormJsonFile    

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire de contact{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('styles/form.css') }}" type="text/css" rel="stylesheet"/>
+{% endblock %}
+
+
+
+{% block body %}
+	<nav class="navbar navbar-expand-lg bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="{{ path('app_contact') }}">Acseo</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="d-flex ms-auto">
+					<li class="nav-item">
+						
+							{% if is_granted('ROLE_ADMIN') %}
+								<a class="nav-link" href="{{ path('app_logout') }}"> Déconnexion </a>
+							{% else %}
+								<a class="nav-link" href="{{ path('app_login') }}"> Connexion </a>
+							{% endif %}
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+{% endblock %}
+
+{% block javascript%}
+{% endblock %}

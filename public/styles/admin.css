@@ -1,0 +1,32 @@
+h1 {
+	flex: content;
+	text-align: center;
+	color: black;
+}
+
+li {
+	list-style: none;
+}
+
+.form-login {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+	margin: 50px;
+	border: 2px solid ;
+	align-content: center;
+	align-items: center;
+}
+
+.form-control {
+	width: 75%;
+}
+
+.btn-login {
+	display: flex;
+	width: 75%;
+}
+
+.login-error {
+	color:red;
+}
