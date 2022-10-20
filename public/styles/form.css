@@ -1,0 +1,37 @@
+h1 {
+	flex: content;
+	flex-direction: column;
+	vertical-align: middle;
+	text-align: center;
+	color: red;
+}
+
+li {
+	list-style: none;
+}
+
+.example-wrapper { 
+	margin: 5em auto; 
+	max-width: 800px; 
+	width: 95%; 
+	font: 18px/1.5 sans-serif; 
+}
+
+.example-wrapper code { 
+	background: #F5F5F5; 
+	padding: 2px 6px; 
+}
+
+.contact {
+	display: flex;
+	flex: content;
+	flex-direction: column;
+	align-content: center;	
+	align-items: center;
+	margin: 5rem auto;
+}
+
+.contact-form {
+	width: 75%;	
+}
+
